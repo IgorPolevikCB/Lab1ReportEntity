@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Автобусные_маршрутыModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="point" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="days" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="Int32" Nullable="false" />
+    <Property Name="idPoint" Type="Int32" Nullable="false" />
+    <Property Name="idDay" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Автобусы">
+    <Key>
+      <PropertyRef Name="Код_автобуса" />
+    </Key>
+    <Property Name="Код_автобуса" Type="Int32" Nullable="false" />
+    <Property Name="Марка" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ФИО_водителя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Количество_мест" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Дни_движения">
+    <Key>
+      <PropertyRef Name="Код_дня" />
+    </Key>
+    <Property Name="Код_дня" Type="Int32" Nullable="false" />
+    <Property Name="День" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Маршруты">
+    <Key>
+      <PropertyRef Name="Код_маршрута" />
+    </Key>
+    <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+    <Property Name="Пункт_назначения" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Дни_движения" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Время_в_пути" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+    <Property Name="Код_дня" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Пункт_назначения">
+    <Key>
+      <PropertyRef Name="Код_пункта" />
+    </Key>
+    <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+    <Property Name="Пункт_назначения1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Промежуточные_пункты">
+    <Key>
+      <PropertyRef Name="Код_пункта" />
+      <PropertyRef Name="Маршрут" />
+      <PropertyRef Name="Код_маршрута" />
+    </Key>
+    <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+    <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Пункт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Рейсы">
+    <Key>
+      <PropertyRef Name="Код_рейса" />
+      <PropertyRef Name="Время_отправления" />
+      <PropertyRef Name="Время_прибытия" />
+      <PropertyRef Name="Маршрут" />
+      <PropertyRef Name="Автобус" />
+      <PropertyRef Name="Цена" />
+      <PropertyRef Name="РасстояниеКМ" />
+      <PropertyRef Name="Код_маршрута" />
+      <PropertyRef Name="Код_автобуса" />
+    </Key>
+    <Property Name="Код_рейса" Type="Int32" Nullable="false" />
+    <Property Name="Время_отправления" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Время_прибытия" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Автобус" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="РасстояниеКМ" Type="Int32" Nullable="false" />
+    <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+    <Property Name="Код_автобуса" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Автобусные_маршрутыEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <EntitySet Name="Автобусы" EntityType="Self.Автобусы" />
+    <EntitySet Name="Дни_движения" EntityType="Self.Дни_движения" />
+    <EntitySet Name="Маршруты" EntityType="Self.Маршруты" />
+    <EntitySet Name="Пункт_назначения" EntityType="Self.Пункт_назначения" />
+    <EntitySet Name="Промежуточные_пункты" EntityType="Self.Промежуточные_пункты" />
+    <EntitySet Name="Рейсы" EntityType="Self.Рейсы" />
+  </EntityContainer>
+</Schema>

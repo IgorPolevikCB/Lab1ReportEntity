@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Автобусные_маршрутыModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Routes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="point" Type="nvarchar(max)" />
+    <Property Name="days" Type="nvarchar(max)" />
+    <Property Name="time" Type="int" Nullable="false" />
+    <Property Name="idPoint" Type="int" Nullable="false" />
+    <Property Name="idDay" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Автобусы">
+    <Key>
+      <PropertyRef Name="Код_автобуса" />
+    </Key>
+    <Property Name="Код_автобуса" Type="int" Nullable="false" />
+    <Property Name="Марка" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ФИО_водителя" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Количество_мест" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Дни_движения">
+    <Key>
+      <PropertyRef Name="Код_дня" />
+    </Key>
+    <Property Name="Код_дня" Type="int" Nullable="false" />
+    <Property Name="День" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Маршруты">
+    <Key>
+      <PropertyRef Name="Код_маршрута" />
+    </Key>
+    <Property Name="Код_маршрута" Type="int" Nullable="false" />
+    <Property Name="Пункт_назначения" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Дни_движения" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Время_в_пути" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Код_пункта" Type="int" Nullable="false" />
+    <Property Name="Код_дня" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Автобусные_маршруты.dbo.Промежуточные_пункты' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Промежуточные_пункты">
+    <Key>
+      <PropertyRef Name="Код_пункта" />
+      <PropertyRef Name="Маршрут" />
+      <PropertyRef Name="Код_маршрута" />
+    </Key>
+    <Property Name="Код_пункта" Type="int" Nullable="false" />
+    <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Пункт" Type="varchar" MaxLength="50" />
+    <Property Name="Код_маршрута" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Пункт_назначения">
+    <Key>
+      <PropertyRef Name="Код_пункта" />
+    </Key>
+    <Property Name="Код_пункта" Type="int" Nullable="false" />
+    <Property Name="Пункт_назначения" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Автобусные_маршруты.dbo.Рейсы' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Рейсы">
+    <Key>
+      <PropertyRef Name="Код_рейса" />
+      <PropertyRef Name="Время_отправления" />
+      <PropertyRef Name="Время_прибытия" />
+      <PropertyRef Name="Маршрут" />
+      <PropertyRef Name="Автобус" />
+      <PropertyRef Name="Цена" />
+      <PropertyRef Name="РасстояниеКМ" />
+      <PropertyRef Name="Код_маршрута" />
+      <PropertyRef Name="Код_автобуса" />
+    </Key>
+    <Property Name="Код_рейса" Type="int" Nullable="false" />
+    <Property Name="Время_отправления" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Время_прибытия" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Автобус" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="Цена" Type="money" Nullable="false" />
+    <Property Name="РасстояниеКМ" Type="int" Nullable="false" />
+    <Property Name="Код_маршрута" Type="int" Nullable="false" />
+    <Property Name="Код_автобуса" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Автобусные_маршрутыModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Автобусы" EntityType="Self.Автобусы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Дни_движения" EntityType="Self.Дни_движения" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Маршруты" EntityType="Self.Маршруты" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Пункт_назначения" EntityType="Self.Пункт_назначения" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Промежуточные_пункты" EntityType="Self.Промежуточные_пункты" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Промежуточные_пункты].[Код_пункта] AS [Код_пункта], 
+    [Промежуточные_пункты].[Маршрут] AS [Маршрут], 
+    [Промежуточные_пункты].[Пункт] AS [Пункт], 
+    [Промежуточные_пункты].[Код_маршрута] AS [Код_маршрута]
+    FROM [dbo].[Промежуточные_пункты] AS [Промежуточные_пункты]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Рейсы" EntityType="Self.Рейсы" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Рейсы].[Код_рейса] AS [Код_рейса], 
+    [Рейсы].[Время_отправления] AS [Время_отправления], 
+    [Рейсы].[Время_прибытия] AS [Время_прибытия], 
+    [Рейсы].[Маршрут] AS [Маршрут], 
+    [Рейсы].[Автобус] AS [Автобус], 
+    [Рейсы].[Цена] AS [Цена], 
+    [Рейсы].[РасстояниеКМ] AS [РасстояниеКМ], 
+    [Рейсы].[Код_маршрута] AS [Код_маршрута], 
+    [Рейсы].[Код_автобуса] AS [Код_автобуса]
+    FROM [dbo].[Рейсы] AS [Рейсы]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

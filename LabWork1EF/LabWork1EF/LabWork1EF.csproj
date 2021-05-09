@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2759B8D-1163-49FB-AF0B-EB2D91A77698}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LabWork1EF</RootNamespace>
+    <AssemblyName>LabWork1EF</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controller\BusesContext.cs" />
+    <Compile Include="Controller\DaysTripContext.cs" />
+    <Compile Include="Controller\DBConnection.cs" />
+    <Compile Include="Controller\PointEndContext.cs" />
+    <Compile Include="Controller\PromPointsContext.cs" />
+    <Compile Include="Controller\RoadsContext.cs" />
+    <Compile Include="Controller\RoutesContext.cs" />
+    <Compile Include="DaysTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DaysTrip.Designer.cs">
+      <DependentUpon>DaysTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBDiagram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DBDiagram.Designer.cs">
+      <DependentUpon>DBDiagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Buses.Designer.cs">
+      <DependentUpon>Buses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Route.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Автобусы.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Дни_движения.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Маршруты.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Промежуточные_пункты.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Пункт_назначения.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Рейсы.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PointEnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PointEnd.Designer.cs">
+      <DependentUpon>PointEnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="PromPoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromPoints.Designer.cs">
+      <DependentUpon>PromPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roads.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roads.Designer.cs">
+      <DependentUpon>Roads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Routes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Routes.Designer.cs">
+      <DependentUpon>Routes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchDaysTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchDaysTrip.Designer.cs">
+      <DependentUpon>SearchDaysTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPointEnd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPointEnd.Designer.cs">
+      <DependentUpon>SearchPointEnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPromPoints.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchPromPoints.Designer.cs">
+      <DependentUpon>SearchPromPoints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRoads.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchRoads.Designer.cs">
+      <DependentUpon>SearchRoads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchRoutes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchRoutes.Designer.cs">
+      <DependentUpon>SearchRoutes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableSelectMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableSelectMain.Designer.cs">
+      <DependentUpon>TableSelectMain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DaysTrip.resx">
+      <DependentUpon>DaysTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBDiagram.resx">
+      <DependentUpon>DBDiagram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Buses.resx">
+      <DependentUpon>Buses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PointEnd.resx">
+      <DependentUpon>PointEnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromPoints.resx">
+      <DependentUpon>PromPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Roads.resx">
+      <DependentUpon>Roads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Routes.resx">
+      <DependentUpon>Routes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchDaysTrip.resx">
+      <DependentUpon>SearchDaysTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPointEnd.resx">
+      <DependentUpon>SearchPointEnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchPromPoints.resx">
+      <DependentUpon>SearchPromPoints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchRoads.resx">
+      <DependentUpon>SearchRoads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchRoutes.resx">
+      <DependentUpon>SearchRoutes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableSelectMain.resx">
+      <DependentUpon>TableSelectMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\abstract-white-poly-background_1390-389.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\33.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

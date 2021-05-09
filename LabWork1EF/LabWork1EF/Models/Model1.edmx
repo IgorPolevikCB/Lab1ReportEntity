@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Автобусные_маршрутыModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Routes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="point" Type="nvarchar(max)" />
+          <Property Name="days" Type="nvarchar(max)" />
+          <Property Name="time" Type="int" Nullable="false" />
+          <Property Name="idPoint" Type="int" Nullable="false" />
+          <Property Name="idDay" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Автобусы">
+          <Key>
+            <PropertyRef Name="Код_автобуса" />
+          </Key>
+          <Property Name="Код_автобуса" Type="int" Nullable="false" />
+          <Property Name="Марка" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ФИО_водителя" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Количество_мест" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Дни_движения">
+          <Key>
+            <PropertyRef Name="Код_дня" />
+          </Key>
+          <Property Name="Код_дня" Type="int" Nullable="false" />
+          <Property Name="День" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Маршруты">
+          <Key>
+            <PropertyRef Name="Код_маршрута" />
+          </Key>
+          <Property Name="Код_маршрута" Type="int" Nullable="false" />
+          <Property Name="Пункт_назначения" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Дни_движения" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Время_в_пути" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Код_пункта" Type="int" Nullable="false" />
+          <Property Name="Код_дня" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Автобусные_маршруты.dbo.Промежуточные_пункты' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Промежуточные_пункты">
+          <Key>
+            <PropertyRef Name="Код_пункта" />
+            <PropertyRef Name="Маршрут" />
+            <PropertyRef Name="Код_маршрута" />
+          </Key>
+          <Property Name="Код_пункта" Type="int" Nullable="false" />
+          <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Пункт" Type="varchar" MaxLength="50" />
+          <Property Name="Код_маршрута" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пункт_назначения">
+          <Key>
+            <PropertyRef Name="Код_пункта" />
+          </Key>
+          <Property Name="Код_пункта" Type="int" Nullable="false" />
+          <Property Name="Пункт_назначения" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Автобусные_маршруты.dbo.Рейсы' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="Код_рейса" />
+            <PropertyRef Name="Время_отправления" />
+            <PropertyRef Name="Время_прибытия" />
+            <PropertyRef Name="Маршрут" />
+            <PropertyRef Name="Автобус" />
+            <PropertyRef Name="Цена" />
+            <PropertyRef Name="РасстояниеКМ" />
+            <PropertyRef Name="Код_маршрута" />
+            <PropertyRef Name="Код_автобуса" />
+          </Key>
+          <Property Name="Код_рейса" Type="int" Nullable="false" />
+          <Property Name="Время_отправления" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Время_прибытия" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Маршрут" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Автобус" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Цена" Type="money" Nullable="false" />
+          <Property Name="РасстояниеКМ" Type="int" Nullable="false" />
+          <Property Name="Код_маршрута" Type="int" Nullable="false" />
+          <Property Name="Код_автобуса" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Автобусные_маршрутыModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Автобусы" EntityType="Self.Автобусы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Дни_движения" EntityType="Self.Дни_движения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Маршруты" EntityType="Self.Маршруты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пункт_назначения" EntityType="Self.Пункт_назначения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Промежуточные_пункты" EntityType="Self.Промежуточные_пункты" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Промежуточные_пункты].[Код_пункта] AS [Код_пункта], 
+    [Промежуточные_пункты].[Маршрут] AS [Маршрут], 
+    [Промежуточные_пункты].[Пункт] AS [Пункт], 
+    [Промежуточные_пункты].[Код_маршрута] AS [Код_маршрута]
+    FROM [dbo].[Промежуточные_пункты] AS [Промежуточные_пункты]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Рейсы].[Код_рейса] AS [Код_рейса], 
+    [Рейсы].[Время_отправления] AS [Время_отправления], 
+    [Рейсы].[Время_прибытия] AS [Время_прибытия], 
+    [Рейсы].[Маршрут] AS [Маршрут], 
+    [Рейсы].[Автобус] AS [Автобус], 
+    [Рейсы].[Цена] AS [Цена], 
+    [Рейсы].[РасстояниеКМ] AS [РасстояниеКМ], 
+    [Рейсы].[Код_маршрута] AS [Код_маршрута], 
+    [Рейсы].[Код_автобуса] AS [Код_автобуса]
+    FROM [dbo].[Рейсы] AS [Рейсы]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Автобусные_маршрутыModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="point" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="days" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="time" Type="Int32" Nullable="false" />
+          <Property Name="idPoint" Type="Int32" Nullable="false" />
+          <Property Name="idDay" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Автобусы">
+          <Key>
+            <PropertyRef Name="Код_автобуса" />
+          </Key>
+          <Property Name="Код_автобуса" Type="Int32" Nullable="false" />
+          <Property Name="Марка" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ФИО_водителя" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Количество_мест" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Дни_движения">
+          <Key>
+            <PropertyRef Name="Код_дня" />
+          </Key>
+          <Property Name="Код_дня" Type="Int32" Nullable="false" />
+          <Property Name="День" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Маршруты">
+          <Key>
+            <PropertyRef Name="Код_маршрута" />
+          </Key>
+          <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+          <Property Name="Пункт_назначения" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Дни_движения" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Время_в_пути" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+          <Property Name="Код_дня" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пункт_назначения">
+          <Key>
+            <PropertyRef Name="Код_пункта" />
+          </Key>
+          <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+          <Property Name="Пункт_назначения1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Промежуточные_пункты">
+          <Key>
+            <PropertyRef Name="Код_пункта" />
+            <PropertyRef Name="Маршрут" />
+            <PropertyRef Name="Код_маршрута" />
+          </Key>
+          <Property Name="Код_пункта" Type="Int32" Nullable="false" />
+          <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Пункт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Рейсы">
+          <Key>
+            <PropertyRef Name="Код_рейса" />
+            <PropertyRef Name="Время_отправления" />
+            <PropertyRef Name="Время_прибытия" />
+            <PropertyRef Name="Маршрут" />
+            <PropertyRef Name="Автобус" />
+            <PropertyRef Name="Цена" />
+            <PropertyRef Name="РасстояниеКМ" />
+            <PropertyRef Name="Код_маршрута" />
+            <PropertyRef Name="Код_автобуса" />
+          </Key>
+          <Property Name="Код_рейса" Type="Int32" Nullable="false" />
+          <Property Name="Время_отправления" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Время_прибытия" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Маршрут" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Автобус" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="РасстояниеКМ" Type="Int32" Nullable="false" />
+          <Property Name="Код_маршрута" Type="Int32" Nullable="false" />
+          <Property Name="Код_автобуса" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Автобусные_маршрутыEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Routes" EntityType="Self.Route" />
+          <EntitySet Name="Автобусы" EntityType="Self.Автобусы" />
+          <EntitySet Name="Дни_движения" EntityType="Self.Дни_движения" />
+          <EntitySet Name="Маршруты" EntityType="Self.Маршруты" />
+          <EntitySet Name="Пункт_назначения" EntityType="Self.Пункт_назначения" />
+          <EntitySet Name="Промежуточные_пункты" EntityType="Self.Промежуточные_пункты" />
+          <EntitySet Name="Рейсы" EntityType="Self.Рейсы" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Автобусные_маршрутыModelStoreContainer" CdmEntityContainer="Автобусные_маршрутыEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Route">
+              <MappingFragment StoreEntitySet="Routes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="days" ColumnName="days" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="idPoint" ColumnName="idPoint" />
+                <ScalarProperty Name="idDay" ColumnName="idDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Автобусы">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Автобусы">
+              <MappingFragment StoreEntitySet="Автобусы">
+                <ScalarProperty Name="Код_автобуса" ColumnName="Код_автобуса" />
+                <ScalarProperty Name="Марка" ColumnName="Марка" />
+                <ScalarProperty Name="ФИО_водителя" ColumnName="ФИО_водителя" />
+                <ScalarProperty Name="Количество_мест" ColumnName="Количество_мест" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Дни_движения">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Дни_движения">
+              <MappingFragment StoreEntitySet="Дни_движения">
+                <ScalarProperty Name="Код_дня" ColumnName="Код_дня" />
+                <ScalarProperty Name="День" ColumnName="День" />
+                <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Маршруты">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Маршруты">
+              <MappingFragment StoreEntitySet="Маршруты">
+                <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+                <ScalarProperty Name="Пункт_назначения" ColumnName="Пункт_назначения" />
+                <ScalarProperty Name="Дни_движения" ColumnName="Дни_движения" />
+                <ScalarProperty Name="Время_в_пути" ColumnName="Время_в_пути" />
+                <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+                <ScalarProperty Name="Код_дня" ColumnName="Код_дня" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пункт_назначения">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Пункт_назначения">
+              <MappingFragment StoreEntitySet="Пункт_назначения">
+                <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+                <ScalarProperty Name="Пункт_назначения1" ColumnName="Пункт_назначения" />
+                <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Промежуточные_пункты">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Промежуточные_пункты">
+              <MappingFragment StoreEntitySet="Промежуточные_пункты">
+                <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+                <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+                <ScalarProperty Name="Пункт" ColumnName="Пункт" />
+                <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Рейсы">
+            <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Рейсы">
+              <MappingFragment StoreEntitySet="Рейсы">
+                <ScalarProperty Name="Код_рейса" ColumnName="Код_рейса" />
+                <ScalarProperty Name="Время_отправления" ColumnName="Время_отправления" />
+                <ScalarProperty Name="Время_прибытия" ColumnName="Время_прибытия" />
+                <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+                <ScalarProperty Name="Автобус" ColumnName="Автобус" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="РасстояниеКМ" ColumnName="РасстояниеКМ" />
+                <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+                <ScalarProperty Name="Код_автобуса" ColumnName="Код_автобуса" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

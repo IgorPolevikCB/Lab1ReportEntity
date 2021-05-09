@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Автобусные_маршрутыModelStoreContainer" CdmEntityContainer="Автобусные_маршрутыEntities">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Routes">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Route">
+        <MappingFragment StoreEntitySet="Routes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="point" ColumnName="point" />
+          <ScalarProperty Name="days" ColumnName="days" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="idPoint" ColumnName="idPoint" />
+          <ScalarProperty Name="idDay" ColumnName="idDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Автобусы">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Автобусы">
+        <MappingFragment StoreEntitySet="Автобусы">
+          <ScalarProperty Name="Код_автобуса" ColumnName="Код_автобуса" />
+          <ScalarProperty Name="Марка" ColumnName="Марка" />
+          <ScalarProperty Name="ФИО_водителя" ColumnName="ФИО_водителя" />
+          <ScalarProperty Name="Количество_мест" ColumnName="Количество_мест" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Дни_движения">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Дни_движения">
+        <MappingFragment StoreEntitySet="Дни_движения">
+          <ScalarProperty Name="Код_дня" ColumnName="Код_дня" />
+          <ScalarProperty Name="День" ColumnName="День" />
+          <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Маршруты">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Маршруты">
+        <MappingFragment StoreEntitySet="Маршруты">
+          <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+          <ScalarProperty Name="Пункт_назначения" ColumnName="Пункт_назначения" />
+          <ScalarProperty Name="Дни_движения" ColumnName="Дни_движения" />
+          <ScalarProperty Name="Время_в_пути" ColumnName="Время_в_пути" />
+          <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+          <ScalarProperty Name="Код_дня" ColumnName="Код_дня" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Пункт_назначения">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Пункт_назначения">
+        <MappingFragment StoreEntitySet="Пункт_назначения">
+          <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+          <ScalarProperty Name="Пункт_назначения1" ColumnName="Пункт_назначения" />
+          <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Промежуточные_пункты">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Промежуточные_пункты">
+        <MappingFragment StoreEntitySet="Промежуточные_пункты">
+          <ScalarProperty Name="Код_пункта" ColumnName="Код_пункта" />
+          <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+          <ScalarProperty Name="Пункт" ColumnName="Пункт" />
+          <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Рейсы">
+      <EntityTypeMapping TypeName="Автобусные_маршрутыModel.Рейсы">
+        <MappingFragment StoreEntitySet="Рейсы">
+          <ScalarProperty Name="Код_рейса" ColumnName="Код_рейса" />
+          <ScalarProperty Name="Время_отправления" ColumnName="Время_отправления" />
+          <ScalarProperty Name="Время_прибытия" ColumnName="Время_прибытия" />
+          <ScalarProperty Name="Маршрут" ColumnName="Маршрут" />
+          <ScalarProperty Name="Автобус" ColumnName="Автобус" />
+          <ScalarProperty Name="Цена" ColumnName="Цена" />
+          <ScalarProperty Name="РасстояниеКМ" ColumnName="РасстояниеКМ" />
+          <ScalarProperty Name="Код_маршрута" ColumnName="Код_маршрута" />
+          <ScalarProperty Name="Код_автобуса" ColumnName="Код_автобуса" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
